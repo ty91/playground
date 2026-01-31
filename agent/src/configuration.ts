@@ -2,18 +2,22 @@ import { systemPrompt } from './systemPrompt.js';
 
 export type Configuration = {
   apiKey: string;
-  modelName: string;
+  modelIdentifier: string;
   systemPrompt: string;
 };
 
-const modelName = 'gemini-3-flash-preview';
+const defaultModelIdentifier = 'gemini-3-flash-preview';
 
 export function loadConfiguration(): Configuration {
   return {
     apiKey: resolveApiKey(),
-    modelName,
+    modelIdentifier: resolveModelIdentifier(),
     systemPrompt
   };
+}
+
+function resolveModelIdentifier(): string {
+  return process.env.GEMINI_MODEL ?? defaultModelIdentifier;
 }
 
 function resolveApiKey(): string {

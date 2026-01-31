@@ -8,8 +8,9 @@
     "start": "node dist/main.js"
   },
   "dependencies": {
-    "@ai-sdk/google": "^2.0.11",
-    "ai": "^6.0.0",
+    "@mariozechner/pi-agent-core": "^0.50.7",
+    "@mariozechner/pi-ai": "^0.50.7",
+    "@mariozechner/pi-tui": "^0.50.7",
     "dotenv": "^17.2.3"
   },
   "devDependencies": {

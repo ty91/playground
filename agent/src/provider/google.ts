@@ -1,7 +1,14 @@
-import { createGoogleGenerativeAI } from '@ai-sdk/google';
-import type { LanguageModel } from 'ai';
+import { getModel, getModels, type Model } from '@mariozechner/pi-ai';
 
-export function createGoogleModel(apiKey: string, modelName: string): LanguageModel {
-  const google = createGoogleGenerativeAI({ apiKey });
-  return google(modelName);
+const fallbackModelIdentifier = 'gemini-2.5-flash';
+
+export function createGoogleModel(modelIdentifier: string): Model<'google-generative-ai'> {
+  const models = getModels('google');
+  const existingModel = models.find((model) => model.id === modelIdentifier);
+
+  if (existingModel) {
+    return existingModel;
+  }
+
+  return getModel('google', fallbackModelIdentifier);
 }
